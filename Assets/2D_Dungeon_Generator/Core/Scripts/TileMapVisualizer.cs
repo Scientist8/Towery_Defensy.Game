@@ -15,12 +15,12 @@ public class TileMapVisualizer : MonoBehaviour
 
 
 
-    //[SerializeField]
-    //private GameObject towerTilePrefab;
-    //[SerializeField]
-    //private GameObject towerTileParent;
+    [SerializeField]
+    private GameObject towerTilePrefab;
+    [SerializeField]
+    private GameObject towerTileParent;
 
-    //public List<GameObject> towerTiles = new List<GameObject>();
+    public List<GameObject> towerTiles = new List<GameObject>();
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
@@ -60,10 +60,10 @@ public class TileMapVisualizer : MonoBehaviour
         }
 
         // Instantiate tower tiles
-        //GameObject go = Instantiate(towerTilePrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
-        //go.transform.parent = towerTileParent.transform;
+        GameObject go = Instantiate(towerTilePrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
+        go.transform.parent = towerTileParent.transform;
 
-        //towerTiles.Add(go as GameObject);
+        towerTiles.Add(go as GameObject);
     }
 
     private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tileMap, TileBase tile)
@@ -124,6 +124,12 @@ public class TileMapVisualizer : MonoBehaviour
         {
             PaintSingleTile(wallTileMap, tile, position);
         }
+
+        // Instantiate tower tiles as game objects
+        GameObject go = Instantiate(towerTilePrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
+        go.transform.parent = towerTileParent.transform;
+
+        towerTiles.Add(go as GameObject);
     }
 
     public void Clear()
@@ -132,10 +138,10 @@ public class TileMapVisualizer : MonoBehaviour
         wallTileMap.ClearAllTiles();
 
         //Clear tower tiles
-        //for (int i = 0; i < towerTiles.Count; i++)
-        //{
-        //    DestroyImmediate(towerTiles[i]);
-        //}
-        //towerTiles.Clear();
+        for (int i = 0; i < towerTiles.Count; i++)
+        {
+            DestroyImmediate(towerTiles[i]);
+        }
+        towerTiles.Clear();
     }
 }
