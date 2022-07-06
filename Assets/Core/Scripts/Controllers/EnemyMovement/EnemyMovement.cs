@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
     {
         _wayPointIndex += 1;
 
-        if (_wayPointIndex >= 17)
+        if (_wayPointIndex >= 22)
         {
             Destroy(gameObject);
         }

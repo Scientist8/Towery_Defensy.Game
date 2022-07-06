@@ -16,11 +16,15 @@ public class TileMapVisualizer : MonoBehaviour
 
 
     [SerializeField]
-    private GameObject towerTilePrefab;
+    private GameObject towerTilePrefab, cornerTilePrefab;
     [SerializeField]
-    private GameObject towerTileParent;
+    private GameObject towerTileParent, cornerTileParent;
+
+    [SerializeField] TowerSpawner towerSpawner;
 
     public List<GameObject> towerTiles = new List<GameObject>();
+
+    private List<GameObject> cornerTiles = new List<GameObject>();
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
@@ -59,11 +63,15 @@ public class TileMapVisualizer : MonoBehaviour
             PaintSingleTile(wallTileMap, tile, position);
         }
 
-        // Instantiate tower tiles
+        // Instantiate tower tiles at walls
         GameObject go = Instantiate(towerTilePrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
         go.transform.parent = towerTileParent.transform;
 
+        // This list gets empty somehow when in play mode,
+        // if you wanted to change the dungeon delete all tower tiles and corner tiles then generate new dungeon
         towerTiles.Add(go as GameObject);
+        // Add the transform to the transform list in tower spawner
+        towerSpawner.towerTransformList.Add(go);
     }
 
     private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tileMap, TileBase tile)
@@ -125,11 +133,14 @@ public class TileMapVisualizer : MonoBehaviour
             PaintSingleTile(wallTileMap, tile, position);
         }
 
-        // Instantiate tower tiles as game objects
-        GameObject go = Instantiate(towerTilePrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
-        go.transform.parent = towerTileParent.transform;
+        
+        //Instantiate tower tiles as game objects on corner walls
+        GameObject go = Instantiate(cornerTilePrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
+        go.transform.parent = cornerTileParent.transform;
 
-        towerTiles.Add(go as GameObject);
+        // Dont add this tile to the general tile list because I don't want towers on corners, make its own list
+
+        cornerTiles.Add(go as GameObject);
     }
 
     public void Clear()
@@ -142,6 +153,12 @@ public class TileMapVisualizer : MonoBehaviour
         {
             DestroyImmediate(towerTiles[i]);
         }
+
+        for (int i = 0; i < cornerTiles.Count; i++)
+        {
+            DestroyImmediate(cornerTiles[i]);
+        }
         towerTiles.Clear();
+        towerSpawner.towerTransformList.Clear();
     }
 }
