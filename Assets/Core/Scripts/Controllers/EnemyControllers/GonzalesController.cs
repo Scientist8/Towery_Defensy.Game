@@ -6,6 +6,8 @@ public class GonzalesController : EnemyControllerParent
 {
     [SerializeField] HealthbarController healthbarController;
 
+    [SerializeField] GameObject gonzalesDeathParticle;
+
     public float gonzalesHealth;
     public int gonzalesGoldToGive;
 
@@ -24,6 +26,7 @@ public class GonzalesController : EnemyControllerParent
         if (isDead)
         {
             AudioManager.instance.PlaySound("GonzalesDeath");
+            InstantiateDeathParticleEffect(gonzalesDeathParticle);
         }
     }
 }

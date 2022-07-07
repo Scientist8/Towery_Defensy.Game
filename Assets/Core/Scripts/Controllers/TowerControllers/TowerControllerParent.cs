@@ -13,15 +13,6 @@ public class TowerControllerParent : MonoBehaviour
 
     protected LineRenderer lineRenderer;
 
-    private void Awake()
-    {
-        
-    }
-    private void Start()
-    {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f); // An expensive calculation so instead of every frame do this every 0.5 seconds
-    }
-
     void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
@@ -56,13 +47,18 @@ public class TowerControllerParent : MonoBehaviour
         }
         else
         {
-            target.GetComponent<EnemyControllerParent>().enemyCurrentHealth -= damage;
-
-            lineRenderer.enabled = true;
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, new Vector3(target.position.x, target.position.y, 0));
-            
+            Damage();
         }
+    }
+
+    private void Damage()
+    {
+
+        target.GetComponent<EnemyControllerParent>().enemyCurrentHealth -= damage;
+
+        lineRenderer.enabled = true;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, new Vector3(target.position.x, target.position.y, 0));
     }
 
     private void OnDrawGizmosSelected()

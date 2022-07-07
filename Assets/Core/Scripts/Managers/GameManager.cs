@@ -6,17 +6,20 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public static bool GameIsPaused = false;
+    public static bool gameIsPaused = false;
+    public bool gameIsOver = false, endLevelOnlyOnce = true;
 
     public int totalMonsterKillCount, monsterKillCount;
     public int wallet = 100;
 
     private void Awake()
     {
-        SingletonThisGameObject();
-
+        SingletonThisGameObject();       
+    }
+    private void Start()
+    {
         // Get kill count
-        totalMonsterKillCount = SaveManager.instance.killCount;
+        totalMonsterKillCount = SaveManager.instance.totalKillCount;
     }
 
     public void SingletonThisGameObject()
@@ -48,19 +51,32 @@ public class GameManager : MonoBehaviour
         totalMonsterKillCount++;
 
         // Save this variable in a binary file, why not just use playerprefs?
-        SaveManager.instance.killCount = totalMonsterKillCount;
+        SaveManager.instance.totalKillCount = totalMonsterKillCount;
         SaveManager.instance.Save();
     }
 
     public void PauseGame()
     {
         Time.timeScale = 0f;
-        GameIsPaused = true;
+        gameIsPaused = true;
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f;
-        GameIsPaused = false;
+        gameIsPaused = false;
+        endLevelOnlyOnce = true;
+    }
+
+    public void GameOver()
+    {
+        Invoke("PauseGame", 2f);
+
+        if (endLevelOnlyOnce)
+        {
+            AudioManager.instance.PlaySound("GameOver");
+
+            endLevelOnlyOnce = false;
+        }
     }
 }

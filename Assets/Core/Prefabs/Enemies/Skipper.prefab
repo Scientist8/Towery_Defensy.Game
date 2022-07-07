@@ -135,7 +135,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_TargetDisplay: 0
 --- !u!114 &3178511134688711324
 MonoBehaviour:
@@ -238,8 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af08820c141b25b48bd4d30aeab12e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 10
+  enemyCurrentHealth: 10
   healthbarController: {fileID: 6686808796164032682}
+  skipperDeathParticle: {fileID: 4999761290007276304, guid: 4a1e3c2ce3baecb469aaf30557e4093d, type: 3}
   skipperHealth: 20000
   skipperGoldToGive: 25
 --- !u!114 &6686808796164032682

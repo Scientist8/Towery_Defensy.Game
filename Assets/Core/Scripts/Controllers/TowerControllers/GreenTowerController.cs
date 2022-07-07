@@ -14,4 +14,11 @@ public class GreenTowerController : TowerControllerParent
         damage = GreenTowerDamage;
         range = GreenTowerRange;
     }
+    private void Start()
+    {
+        InvokeRepeating("UpdateTarget", 0f, 0.5f); // An expensive calculation so instead of every frame do this every 0.5 seconds
+
+        // Shake it when spawned
+        DOTweenShaker.Shake(duration: 0.5f, strength: 0.5f);
+    }
 }

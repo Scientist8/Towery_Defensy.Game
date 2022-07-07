@@ -19,4 +19,9 @@ public class EnemyControllerParent : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    protected virtual void InstantiateDeathParticleEffect(GameObject particleSystem)
+    {
+        Instantiate(particleSystem, transform.position, Quaternion.identity);
+    }
 }

@@ -7,22 +7,33 @@ public class GameScreenUI : MonoBehaviour
 {
     [SerializeField] TMP_Text killCountText, totalKillCountText;
     [SerializeField] TMP_Text walletText;
+    [SerializeField] TMP_Text livesText;
 
     [SerializeField] TMP_Text endScreenTotalKillCountText, endScreenKillCountText;
 
+    [SerializeField] LevelFailChecker levelFailChecker;
     [SerializeField] GameObject gameScreenPanel;
     [SerializeField] GameObject pauseMenuPanel;
     [SerializeField] GameObject gameOverPanel;
+
+    public bool endLevelOnlyOnce = true;
 
     private void Update()
     {
         killCountText.text = "Monsters Killed: " + GameManager.Instance.monsterKillCount.ToString();
         totalKillCountText.text = "Total Monsters Killed: " + GameManager.Instance.totalMonsterKillCount.ToString();
+        livesText.text = "Lives: " + levelFailChecker.enemiesToEndLevel.ToString();
 
         walletText.text = "Gold: " + GameManager.Instance.wallet.ToString();
 
-        endScreenKillCountText.text = "Total Slain Monsters: " + GameManager.Instance.monsterKillCount.ToString();
-        endScreenTotalKillCountText.text = "Slain Monsters: " + GameManager.Instance.totalMonsterKillCount.ToString();
+        endScreenKillCountText.text = "Slain Monsters: " + GameManager.Instance.monsterKillCount.ToString();
+        endScreenTotalKillCountText.text = "Total Slain Monsters: " + GameManager.Instance.totalMonsterKillCount.ToString();
+
+        if (GameManager.Instance.gameIsOver)
+        {
+            GameManager.Instance.GameOver();
+            GameOver();
+        }
     }
 
     public void PauseGame()
@@ -40,7 +51,6 @@ public class GameScreenUI : MonoBehaviour
 
     public void GameOver()
     {
-        GameManager.Instance.PauseGame();
         gameScreenPanel.SetActive(false);
         gameOverPanel.SetActive(true);
 

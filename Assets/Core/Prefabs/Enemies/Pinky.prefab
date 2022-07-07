@@ -135,7 +135,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_TargetDisplay: 0
 --- !u!114 &3178511134688711324
 MonoBehaviour:
@@ -238,8 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f542b485ae68b75428615e9447cbf549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 0
+  enemyCurrentHealth: 10
   healthbarController: {fileID: 6686808796164032682}
+  pinkyDeathEffect: {fileID: 4999761290007276304, guid: 7970c77283a04244b9d1dbf2cd9f1afd, type: 3}
   pinkyHealth: 5000
   pinkyGoldToGive: 10
 --- !u!114 &6686808796164032682

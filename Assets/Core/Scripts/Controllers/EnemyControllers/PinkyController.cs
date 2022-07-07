@@ -6,6 +6,8 @@ public class PinkyController : EnemyControllerParent
 {
     [SerializeField] HealthbarController healthbarController;
 
+    [SerializeField] GameObject pinkyDeathEffect;
+
     public float pinkyHealth;
     public int pinkyGoldToGive;
 
@@ -25,6 +27,7 @@ public class PinkyController : EnemyControllerParent
         if (isDead)
         {
             AudioManager.instance.PlaySound("PinkyDeath");
+            InstantiateDeathParticleEffect(pinkyDeathEffect);
         }
     }
 }

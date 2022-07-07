@@ -6,6 +6,8 @@ public class SkipperController : EnemyControllerParent
 {
     [SerializeField] HealthbarController healthbarController;
 
+    [SerializeField] GameObject skipperDeathParticle;
+
     public float skipperHealth;
     public int skipperGoldToGive;
 
@@ -24,6 +26,7 @@ public class SkipperController : EnemyControllerParent
         if (isDead)
         {
             AudioManager.instance.PlaySound("SkipperDeath");
+            InstantiateDeathParticleEffect(skipperDeathParticle);            
         }
     }
 }

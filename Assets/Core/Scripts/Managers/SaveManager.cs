@@ -5,10 +5,12 @@ using System;
 
 public class SaveManager : MonoBehaviour
 {
+	/* Creates a file named playerInfo.dat and saves the information in binary format
+	 * Directory: Users/ Username/Appdata/LocalLow/Default Company (or the company name in here)/name of this game/playerInfo.dat */
+
 	public static SaveManager instance { get; private set; }
 
-	public int killCount;
-	//public int coinNumber;
+	public int totalKillCount;
 
 
 	private void Awake()
@@ -25,8 +27,7 @@ public class SaveManager : MonoBehaviour
 			FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
 			PlayerData_Storage data = (PlayerData_Storage)bf.Deserialize(file);
 
-			killCount = data.monsterKillCount;
-			//coinNumber = data.coinNumber;
+			totalKillCount = data.monsterKillCount;
 
 
 			file.Close();
@@ -41,8 +42,7 @@ public class SaveManager : MonoBehaviour
 		FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
 		PlayerData_Storage data = new PlayerData_Storage();
 
-		data.monsterKillCount = killCount;
-		//data.coinNumber = coinNumber;
+		data.monsterKillCount = totalKillCount;
 
 		bf.Serialize(file, data);
 		file.Close();
@@ -69,6 +69,6 @@ public class SaveManager : MonoBehaviour
 class PlayerData_Storage
 {
 	public int monsterKillCount;
-	//public int coinNumber;
+	//public int goldInWallet;
 
 }

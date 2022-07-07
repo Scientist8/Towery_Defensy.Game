@@ -135,7 +135,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_TargetDisplay: 0
 --- !u!114 &3178511134688711324
 MonoBehaviour:
@@ -238,8 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41eaa9dbf52e26141b0adeb1236bf2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 10
+  enemyCurrentHealth: 10
   healthbarController: {fileID: 6686808796164032682}
+  gonzalesDeathParticle: {fileID: 4999761290007276304, guid: f66c2cc25a819564cabd251e5b3a2703, type: 3}
   gonzalesHealth: 2000
   gonzalesGoldToGive: 5
 --- !u!114 &6686808796164032682

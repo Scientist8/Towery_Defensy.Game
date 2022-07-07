@@ -6,6 +6,13 @@ public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] GameObject mainMenuPanel, infoPanel, levelsPanel;
 
+    [SerializeField] TMPro.TMP_Text totalSlainMonstersText;
+
+    private void Start()
+    {
+        totalSlainMonstersText.text = "Total Slain Monsters: " + GameManager.Instance.totalMonsterKillCount.ToString();
+    }
+
     public void LevelsButton()
     {
         mainMenuPanel.SetActive(false);
