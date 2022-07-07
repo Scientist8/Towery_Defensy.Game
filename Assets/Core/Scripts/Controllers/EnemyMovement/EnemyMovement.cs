@@ -4,40 +4,66 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float _moveSpeed = 10f;
+    public float moveSpeed = 10f;
 
-    private Transform _target;
-    private int _wayPointIndex = 0;
+    private Transform target;
+    private int wayPointIndex = 0;
+
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
 
     private void Start()
     {
-        _target = WayPoints.points[0];
+        target = WayPoints.points[0];
     }
 
     private void Update()
     {
-        Vector3 direction = _target.position - transform.position;
+        Move();
+    }
 
-        transform.Translate(direction.normalized * _moveSpeed * Time.deltaTime, Space.World);
+    private void Move()
+    {
+        Vector3 direction = target.position - transform.position;
 
-        if(Vector3.Distance(transform.position, _target.position) <= 0.2f)
+        transform.Translate(direction.normalized * moveSpeed * Time.deltaTime, Space.World);
+
+        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
         {
             GetNextWayPoint();
         }
+
+        TurnDirection();
     }
 
     private void GetNextWayPoint()
     {
-        _wayPointIndex += 1;
+        wayPointIndex += 1;
 
-        if (_wayPointIndex >= 22)
+        if (wayPointIndex >= WayPoints.points.Length)
         {
+            Debug.Log("Game Over!!!");
             Destroy(gameObject);
         }
         else
         {
-            _target = WayPoints.points[_wayPointIndex];
+            target = WayPoints.points[wayPointIndex];
         }
+    }
 
+    private void TurnDirection()
+    {
+        if (transform.position.x > target.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 }

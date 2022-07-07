@@ -6,8 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public float _spawnTimer = 2f;
 
-    [SerializeField] GameObject _enemyPrefab;
-    [SerializeField] GameObject _enemyParent;
+    [SerializeField] GameObject[] enemyPrefabs;
+    [SerializeField] GameObject enemyParent;
 
     private void Start()
     {
@@ -20,13 +20,13 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(_spawnTimer);
 
-        GameObject go = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
-        go.transform.parent = _enemyParent.transform;
+        GameObject go = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], transform.position, Quaternion.identity);
+        go.transform.parent = enemyParent.transform;
     }
 
     public void Spawnies()
     {
-        GameObject go = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
-        go.transform.parent = _enemyParent.transform;
+        GameObject go = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], transform.position, Quaternion.identity);
+        go.transform.parent = enemyParent.transform;
     }
 }

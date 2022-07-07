@@ -8,28 +8,50 @@ public class TowerSpawner : MonoBehaviour
 
     public List<GameObject> towerTileGameObjects;
     
-    [SerializeField] GameObject _towerPrefab;
+    [SerializeField] GameObject[] towerPrefabs;
     [SerializeField] GameObject towerParent;
 
-    private void Awake()
-    {
+    public int redTowerCost = 15, greenTowerCost = 25, blueTowerCost = 50;
 
+    public void SpawnRedTowersAtRandom()
+    {
+        SpawnAndSpend(towerPrefabs[0], redTowerCost);
     }
-    public void SpawnTowersAtRandom()
+    public void SpawnGreenTowersAtRandom()
     {
-        int randomPosIndex = Random.Range(0, towerTransformList.Count);
+        SpawnAndSpend(towerPrefabs[1], greenTowerCost);
+    }
+    public void SpawnBlueTowersAtRandom()
+    {
+        SpawnAndSpend(towerPrefabs[2], blueTowerCost);
+    }
 
-        
-        GameObject go = Instantiate(_towerPrefab, towerTransformList[randomPosIndex].transform.position, Quaternion.identity);
-        go.transform.parent = towerParent.transform;
-
-        towerTransformList[randomPosIndex].GetComponent<TowerTileController>().hasTowerOn = true;
-
-        if (towerTransformList.Count <= 0)
+    private void SpawnAndSpend(GameObject towerPrefab, int cost)
+    {
+        if (GameManager.Instance.wallet >= cost)
         {
-            Debug.Log("No empty tower tile and total tower count: " + towerParent.transform.childCount);
-            return;
-        }
+            int randomPosIndex = Random.Range(0, towerTransformList.Count);
 
+            GameObject go = Instantiate(towerPrefab, towerTransformList[randomPosIndex].transform.position, Quaternion.identity);
+            go.transform.parent = towerParent.transform;
+
+            towerTransformList[randomPosIndex].GetComponent<TowerTileController>().hasTowerOn = true;
+
+            // Spend gold
+            GameManager.Instance.wallet -= cost;
+
+            if (towerTransformList.Count <= 0)
+            {
+                Debug.Log("No empty tower tile and total tower count: " + towerParent.transform.childCount);
+                return;
+            }
+
+            AudioManager.instance.PlaySound("TowerPlace");
+        }
+        else
+        {
+            AudioManager.instance.PlaySound("TowerPlaceFail");
+        }
     }
+
 }
