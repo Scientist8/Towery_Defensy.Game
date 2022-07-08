@@ -7,14 +7,17 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public static bool gameIsPaused = false;
-    public bool gameIsOver = false, endLevelOnlyOnce = true;
+    public bool gameIsOver = false;
+    public bool levelPassed = false;
 
     public int totalMonsterKillCount, monsterKillCount;
-    public int wallet = 100;
+    public int wallet = 150;
 
     private void Awake()
     {
-        SingletonThisGameObject();       
+        SingletonThisGameObject();
+
+        ResumeGame(); // Had a little bug when the level fails and reloads the scene time.timescale wouldn't turn back to 1, this fixed it for the moment
     }
     private void Start()
     {
@@ -65,18 +68,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameIsPaused = false;
-        endLevelOnlyOnce = true;
     }
 
-    public void GameOver()
+    public void PassLevel()
     {
-        Invoke("PauseGame", 2f);
-
-        if (endLevelOnlyOnce)
-        {
-            AudioManager.instance.PlaySound("GameOver");
-
-            endLevelOnlyOnce = false;
-        }
+        levelPassed = true;
+        Time.timeScale = 0.2f;
     }
 }

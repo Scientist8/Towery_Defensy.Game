@@ -9,12 +9,19 @@ public class EnemyControllerParent : MonoBehaviour
 
     protected bool isDead = false;
 
+    private LevelFailChecker levelFailChecker;
+    private void Awake()
+    {
+        levelFailChecker = FindObjectOfType<LevelFailChecker>();
+    }
+
     protected virtual void Die()
     {
         if (enemyCurrentHealth <= 0)
         {
             GameManager.Instance.GiveGold(goldToGive);
             GameManager.Instance.IncreaseMonsterKillCount();
+            levelFailChecker.enemiesToPassLevelHolder--;
             isDead = true;
             Destroy(gameObject);
         }

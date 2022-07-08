@@ -97,4 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 566d4e6c62f570b45a7dc5573ea9af95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesToEndLevel: 3
+  enemiesToFailLevel: 3
+  enemiesToPassLevelMax: 150
+  enemiesToPassLevel: 0
+  enemiesToPassLevelHolder: 0

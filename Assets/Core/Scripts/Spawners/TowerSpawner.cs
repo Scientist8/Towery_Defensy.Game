@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TowerSpawner : MonoBehaviour
 {
-    public List<GameObject> towerTransformList;
+    // Had problem with towerTransformList getting empty in play mode,
+    // had to play around with prefabs to fix it to save the day,
+    // unpacking from the prefab fixes this problem
 
-    public List<GameObject> towerTileGameObjects;
+    public List<GameObject> towerTransformList = new List<GameObject>();
     
     [SerializeField] GameObject[] towerPrefabs;
     [SerializeField] GameObject towerParent;

@@ -148,7 +148,7 @@ public class TileMapVisualizer : MonoBehaviour
         floorTileMap.ClearAllTiles();
         wallTileMap.ClearAllTiles();
 
-        //Clear tower tiles
+        //Clear tower and corner tiles
         for (int i = 0; i < towerTiles.Count; i++)
         {
             DestroyImmediate(towerTiles[i]);

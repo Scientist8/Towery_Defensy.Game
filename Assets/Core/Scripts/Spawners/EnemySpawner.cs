@@ -4,29 +4,58 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public float _spawnTimer = 2f;
+    public float spawnTimer = 3f;
+    public float minSpawnTimer = 0.1f;
 
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] GameObject enemyParent;
 
-    private void Start()
-    {
-        //StartCoroutine(SpawnEnemies());
+    private bool spawn = true;
 
-        InvokeRepeating("Spawnies", 1f, _spawnTimer);
+    private void Update()
+    {
+        if (spawn)
+        {
+            StartCoroutine(SpawnEnemies());
+        }
     }
 
     public IEnumerator SpawnEnemies()
     {
-        yield return new WaitForSeconds(_spawnTimer);
-
         GameObject go = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], transform.position, Quaternion.identity);
         go.transform.parent = enemyParent.transform;
+
+        spawn = false;
+
+        yield return new WaitForSeconds(spawnTimer);
+
+        DecreaseSpawnTimerGradually();
+
+        if (spawnTimer <= minSpawnTimer)
+        {
+            spawnTimer = minSpawnTimer;
+        }
+        spawn = true;
+
     }
 
-    public void Spawnies()
+    private void DecreaseSpawnTimerGradually()
     {
-        GameObject go = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], transform.position, Quaternion.identity);
-        go.transform.parent = enemyParent.transform;
+        if (spawnTimer >= 2)
+        {
+            spawnTimer -= 0.1f;
+        }
+        else if (spawnTimer >= 1.5f)
+        {
+            spawnTimer -= 0.05f;
+        }
+        else if (spawnTimer >= 1)
+        {
+            spawnTimer -= 0.025f;
+        }
+        else
+        {
+            spawnTimer -= 0.01f;
+        }
     }
 }

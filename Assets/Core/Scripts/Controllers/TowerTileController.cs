@@ -17,7 +17,6 @@ public class TowerTileController : MonoBehaviour
         if (hasTowerOn)
         {
             towerSpawner.towerTransformList.Remove(this.gameObject);
-            Debug.Log("This object has been removed from the list: " + gameObject.name);
         }
     }
 }

@@ -46,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (wayPointIndex >= WayPoints.points.Length)
         {
-            FindObjectOfType<LevelFailChecker>().enemiesToEndLevel--;
+            FindObjectOfType<LevelFailChecker>().enemiesToFailLevel--;
             Destroy(gameObject);
         }
         else

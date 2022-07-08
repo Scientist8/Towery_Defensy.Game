@@ -48,10 +48,12 @@ MonoBehaviour:
   totalKillCountText: {fileID: 0}
   walletText: {fileID: 0}
   livesText: {fileID: 0}
+  killsToPassLevelText: {fileID: 0}
   endScreenTotalKillCountText: {fileID: 0}
   endScreenKillCountText: {fileID: 0}
   levelFailChecker: {fileID: 0}
   gameScreenPanel: {fileID: 0}
   pauseMenuPanel: {fileID: 0}
   gameOverPanel: {fileID: 0}
-  endLevelOnlyOnce: 1
+  levelSuccessPanel: {fileID: 0}
+  playFailSoundOnlyOnce: 1

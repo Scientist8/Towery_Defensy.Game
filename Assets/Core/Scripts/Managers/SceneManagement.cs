@@ -25,7 +25,6 @@ public class SceneManagement : MonoBehaviour
     }
     public void LoadNextLevel()
     {
-        GameManager.Instance.ResumeGame();
         int currenSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currenSceneIndex + 1;
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
@@ -37,15 +36,12 @@ public class SceneManagement : MonoBehaviour
 
     public void ReloadLevel()
     {
-        GameManager.Instance.gameIsOver = false;
-        GameManager.Instance.ResumeGame();
         int currenSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currenSceneIndex);
     }
 
     public void LoadLevel0()
     {
-        GameManager.Instance.ResumeGame();
         SceneManager.LoadScene(0);
     }
     public void LoadLevel1()
@@ -59,5 +55,33 @@ public class SceneManagement : MonoBehaviour
     public void LoadLevel3()
     {
         SceneManager.LoadScene(3);
+    }
+    public void LoadLevel4()
+    {
+        SceneManager.LoadScene(4);
+    }
+    public void LoadLevel5()
+    {
+        SceneManager.LoadScene(5);
+    }
+    public void LoadLevel6()
+    {
+        SceneManager.LoadScene(6);
+    }
+    public void LoadLevel7()
+    {
+        SceneManager.LoadScene(7);
+    }
+    public void LoadLevel8()
+    {
+        SceneManager.LoadScene(8);
+    }
+    public void LoadLevel9()
+    {
+        SceneManager.LoadScene(9);
+    }
+    public void LoadLevel10()
+    {
+        SceneManager.LoadScene(10);
     }
 }

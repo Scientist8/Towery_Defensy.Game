@@ -8,21 +8,26 @@ public class GameScreenUI : MonoBehaviour
     [SerializeField] TMP_Text killCountText, totalKillCountText;
     [SerializeField] TMP_Text walletText;
     [SerializeField] TMP_Text livesText;
+    [SerializeField] TMP_Text killsToPassLevelText;
 
     [SerializeField] TMP_Text endScreenTotalKillCountText, endScreenKillCountText;
 
     [SerializeField] LevelFailChecker levelFailChecker;
+
     [SerializeField] GameObject gameScreenPanel;
     [SerializeField] GameObject pauseMenuPanel;
     [SerializeField] GameObject gameOverPanel;
+    [SerializeField] GameObject levelSuccessPanel;
 
-    public bool endLevelOnlyOnce = true;
+    public bool playFailSoundOnlyOnce = true;
+
 
     private void Update()
     {
         killCountText.text = "Monsters Killed: " + GameManager.Instance.monsterKillCount.ToString();
         totalKillCountText.text = "Total Monsters Killed: " + GameManager.Instance.totalMonsterKillCount.ToString();
-        livesText.text = "Lives: " + levelFailChecker.enemiesToEndLevel.ToString();
+        livesText.text = "Lives: " + levelFailChecker.enemiesToFailLevel.ToString();
+        killsToPassLevelText.text = "Kills To Pass: " + levelFailChecker.enemiesToPassLevelHolder;
 
         walletText.text = "Gold: " + GameManager.Instance.wallet.ToString();
 
@@ -31,8 +36,21 @@ public class GameScreenUI : MonoBehaviour
 
         if (GameManager.Instance.gameIsOver)
         {
-            GameManager.Instance.GameOver();
             GameOver();
+
+            GameManager.Instance.PauseGame();
+
+            if (playFailSoundOnlyOnce)
+            {
+                AudioManager.instance.PlaySound("GameOver");
+                playFailSoundOnlyOnce = false;
+            }
+        }
+
+        if (GameManager.Instance.levelPassed)
+        {
+            LevelSuccessMenuActivate();
+            GameManager.Instance.levelPassed = false;
         }
     }
 
@@ -53,9 +71,43 @@ public class GameScreenUI : MonoBehaviour
     {
         gameScreenPanel.SetActive(false);
         gameOverPanel.SetActive(true);
-
+    }
+    public void ReloadLevel()
+    {
+        SceneManagement.Instance.ReloadLevel();
+        GameManager.Instance.monsterKillCount = 0;
+        GameManager.Instance.wallet = 150;
     }
 
+    public void LoadNextLevel()
+    {
+        SceneManagement.Instance.LoadNextLevel();
+        GameManager.Instance.monsterKillCount = 0;
+        GameManager.Instance.wallet = 150;
+    }
+
+
+    public void BackToMainMenu()
+    {
+        SceneManagement.Instance.LoadLevel0();
+        GameManager.Instance.monsterKillCount = 0;
+        GameManager.Instance.wallet = 150;
+    }
+
+    public void LevelSuccessMenuActivate()
+    {
+        GameManager.Instance.PassLevel();
+        gameScreenPanel.SetActive(false);
+        levelSuccessPanel.SetActive(true);
+    }
+
+    public void LevelSuccesMenuDeactivate()
+    {
+        GameManager.Instance.ResumeGame();
+        gameScreenPanel.SetActive(true);
+        levelSuccessPanel.SetActive(false);
+    }
+    
     public void QuitGame()
     {
         Application.Quit();
