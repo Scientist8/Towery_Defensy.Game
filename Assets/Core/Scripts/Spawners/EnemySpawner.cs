@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
 
     private bool spawn = true;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (spawn)
         {

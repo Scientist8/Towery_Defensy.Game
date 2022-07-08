@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
         target = WayPoints.points[0];
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
     }

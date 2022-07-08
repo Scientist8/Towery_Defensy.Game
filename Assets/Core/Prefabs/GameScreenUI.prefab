@@ -1225,7 +1225,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Green Laser Tower
 
-    Damage: 10
+    Damage: 25
 
     Range: 4
 
@@ -2258,7 +2258,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Blue Laser Tower
 
-    Damage: 20
+    Damage: 50
 
     Range: 5
 
@@ -3621,7 +3621,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Red Laser Tower
 
-    Damage: 7
+    Damage: 15
 
     Range: 3
 

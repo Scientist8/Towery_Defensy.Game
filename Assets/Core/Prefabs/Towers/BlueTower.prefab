@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Enemy
   target: {fileID: 0}
-  blueTowerDamage: 20
+  blueTowerDamage: 50
   blueTowerRange: 5
 --- !u!114 &4578823353414608992
 MonoBehaviour:

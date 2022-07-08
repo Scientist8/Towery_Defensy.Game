@@ -17,7 +17,7 @@ public class SkipperController : EnemyControllerParent
         goldToGive = skipperGoldToGive;
         healthbarController.UpdateHealthBar(skipperHealth, enemyCurrentHealth);
     }
-    private void Update()
+    private void FixedUpdate()
     {
         healthbarController.UpdateHealthBar(skipperHealth, enemyCurrentHealth);
 

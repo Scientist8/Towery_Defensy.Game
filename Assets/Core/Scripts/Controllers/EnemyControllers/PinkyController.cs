@@ -18,7 +18,7 @@ public class PinkyController : EnemyControllerParent
         healthbarController.UpdateHealthBar(pinkyHealth, enemyCurrentHealth);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         healthbarController.UpdateHealthBar(pinkyHealth, enemyCurrentHealth);
 

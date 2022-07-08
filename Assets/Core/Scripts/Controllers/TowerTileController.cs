@@ -12,7 +12,7 @@ public class TowerTileController : MonoBehaviour
     {
         towerSpawner = FindObjectOfType<TowerSpawner>();
     }
-    void Update()
+    void FixedUpdate()
     {
         if (hasTowerOn)
         {

@@ -38,7 +38,7 @@ public class TowerControllerParent : MonoBehaviour
             target = null;
         }
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (target == null)
         {

@@ -89,6 +89,7 @@ public class GameScreenUI : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        GameManager.Instance.ResumeGame();
         SceneManagement.Instance.LoadLevel0();
         GameManager.Instance.monsterKillCount = 0;
         GameManager.Instance.wallet = 150;

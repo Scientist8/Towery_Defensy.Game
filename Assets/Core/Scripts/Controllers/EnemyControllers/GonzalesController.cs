@@ -17,7 +17,7 @@ public class GonzalesController : EnemyControllerParent
         goldToGive = gonzalesGoldToGive;
         healthbarController.UpdateHealthBar(gonzalesHealth, enemyCurrentHealth);
     }
-    private void Update()
+    private void FixedUpdate()
     {
         healthbarController.UpdateHealthBar(gonzalesHealth, enemyCurrentHealth);
 

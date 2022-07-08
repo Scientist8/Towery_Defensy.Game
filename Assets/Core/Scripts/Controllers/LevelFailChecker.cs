@@ -16,7 +16,7 @@ public class LevelFailChecker : MonoBehaviour
         enemiesToPassLevelHolder = enemiesToPassLevelMax;
         GameManager.Instance.gameIsOver = false;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         enemiesToPassLevel = GameManager.Instance.monsterKillCount;
 
