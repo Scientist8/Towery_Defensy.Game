@@ -47,7 +47,10 @@ public class TowerControllerParent : MonoBehaviour
         }
         else
         {
-            Damage();
+            if (!GameManager.Instance.gameIsPaused)
+            {
+                Damage();
+            }
         }
     }
 

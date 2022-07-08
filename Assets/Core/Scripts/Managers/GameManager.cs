@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public static bool gameIsPaused = false;
+    public bool gameIsPaused = false;
     public bool gameIsOver = false;
     public bool levelPassed = false;
 
