@@ -74,6 +74,8 @@ public class GameScreenUI : MonoBehaviour
     }
     public void ReloadLevel()
     {
+        GameManager.Instance.gameIsOver = false;
+        GameManager.Instance.ResumeGame();
         SceneManagement.Instance.ReloadLevel();
         GameManager.Instance.monsterKillCount = 0;
         GameManager.Instance.wallet = 150;
@@ -81,6 +83,7 @@ public class GameScreenUI : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        GameManager.Instance.ResumeGame();
         SceneManagement.Instance.LoadNextLevel();
         GameManager.Instance.monsterKillCount = 0;
         GameManager.Instance.wallet = 150;

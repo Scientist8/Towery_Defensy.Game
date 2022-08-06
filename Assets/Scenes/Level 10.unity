@@ -3138,33 +3138,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 344920542}
     - target: {fileID: 4857571171800305790, guid: cdb01cea14fa81d48bb59ec409598ed3, type: 3}
-      propertyPath: towerTilePrefab
-      value: 
-      objectReference: {fileID: 2116994666250892048, guid: e2208753c462ac34cb27cdb0fe5c4f6c, type: 3}
-    - target: {fileID: 4857571171800305790, guid: cdb01cea14fa81d48bb59ec409598ed3, type: 3}
       propertyPath: cornerTileParent
       value: 
       objectReference: {fileID: 2061377107}
-    - target: {fileID: 4857571171800305790, guid: cdb01cea14fa81d48bb59ec409598ed3, type: 3}
-      propertyPath: cornerTilePrefab
-      value: 
-      objectReference: {fileID: 2116994666250892048, guid: 9a8b61d2350a57443a65cf5a1188fd9f, type: 3}
-    - target: {fileID: 4857571171800305790, guid: cdb01cea14fa81d48bb59ec409598ed3, type: 3}
-      propertyPath: towerTiles.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4857571171800305790, guid: cdb01cea14fa81d48bb59ec409598ed3, type: 3}
-      propertyPath: towerTiles.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4857571171800305790, guid: cdb01cea14fa81d48bb59ec409598ed3, type: 3}
-      propertyPath: towerTilesTransforms.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4857571171800305790, guid: cdb01cea14fa81d48bb59ec409598ed3, type: 3}
-      propertyPath: towerTilesTransforms.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4857571171800305791, guid: cdb01cea14fa81d48bb59ec409598ed3, type: 3}
       propertyPath: m_Name
       value: TileMapVisualizer
